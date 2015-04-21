@@ -78,25 +78,16 @@ vector<int> Sieve::divisor(){
     int count = 0;
     vector<int> isDiv = this->primes();
     vector<int> factorCount(n, 0);
-    int i, j;
     
-    for(i = 0; i <= n; i++){
-        factorCount[isDiv[i]]++;
-    }
     printf("\nFactorCount: ");
-    for(i = 1; i < factorCount.size(); i++){
+    for(int i = 0; i < n; i++){
+        factorCount[isDiv[i]]++;
         if(factorCount[i] != 0){
             printf("%d:%d ", i, factorCount[i]);
         }
-            
-//            if(factorCount[i]%3==0 & ){
-//                
-//            }
-        
     }
     
-    
-    for(i = 1; i <= n; i++){
+    for(int i = 1; i <= n; i++){
         if(n%i==0){
             count++;
         }
