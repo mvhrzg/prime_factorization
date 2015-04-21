@@ -24,6 +24,7 @@ int main(int argc, char** argv) {
     s.divisor();
     s2.divisor();
     s3.divisor();
+    
     return 0;
 }
 

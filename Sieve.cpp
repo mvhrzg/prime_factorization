@@ -25,14 +25,14 @@ Sieve::Sieve(const Sieve& orig) {
     n = orig.n;
 }
 
-int Sieve::multiples(vector<bool> &array, int a, int n) {
-    int i = 2, num;
-    while ((num = i * a) <= n) {
-        array[ num - 1 ] = 1; // minus 1 because index starts from 0.
-        ++i;
-    }
-    return a;
-}
+//int Sieve::multiples(vector<bool> &array, int a, int n) {
+//    int i = 2, num;
+//    while ((num = i * a) <= n) {
+//        array[ num - 1 ] = 1; // minus 1 because index starts from 0.
+//        ++i;
+//    }
+//    return a;
+//}
 
 vector<int> Sieve::primes(){  
     // Print the number of 2s that divide n
@@ -42,8 +42,6 @@ vector<int> Sieve::primes(){
     while (thisN % 2 == 0) {
         prime[top] = 2;
         top++;
-//        printf("%d ", prime[top]);
-        //n = n / 2;
         thisN = thisN/2;
     }
 
@@ -53,7 +51,6 @@ vector<int> Sieve::primes(){
         while (thisN % i == 0) {
             prime[top] = i;
             top++;
-//            printf("%d ", prime[top]);
             thisN = thisN / i;
         }
     }
@@ -63,7 +60,6 @@ vector<int> Sieve::primes(){
     if (thisN > 2){
         prime[top] = thisN;
         top++;
-//        printf("%d ", prime[top]);
     }
     printf("Prime Factors of %d: ", n);
     for(int i = 0; i < prime.size(); i++){
@@ -76,29 +72,44 @@ vector<int> Sieve::primes(){
 
 vector<int> Sieve::divisor(){
     int count = 0;
-    vector<int> isDiv = this->primes();
+    Sieve result(n);
+    vector<int> isDiv = result.primes();
     vector<int> factorCount(n, 0);
     
-    printf("\nFactorCount: ");
-    for(int i = 0; i < n; i++){
-        factorCount[isDiv[i]]++;
+    
+    printf(" FactorCount: ");
+    for(int i = 0; i < isDiv.size(); i++){
+        factorCount[isDiv[i]]++;       
+    }
+    for (int i=1; i<factorCount.size(); i++){ //stay away from position 0 in factorCount
         if(factorCount[i] != 0){
             printf("%d:%d ", i, factorCount[i]);
         }
     }
+    printf("\n");
     
-    for(int i = 1; i <= n; i++){
-        if(n%i==0){
-            count++;
+    for(int i = 1; i < factorCount.size(); i++){
+        if(factorCount[i] == 7){
+            
+        }
+        for(int j = i; j < factorCount.size(); j++){
+            
+            }
         }
     }
-
-    printf("\n%d has %d divisors\n", n, count);
-//    return factorCount;
-    return isDiv;
+//    counts number of divisors in n (unrelated to sieve)
+//    for(int i = 1; i <= n; i++){
+//        if(n%i==0){
+//            count++;
+//        }
+//    }
+//    printf("\n%d has %d divisors\n", n, count);
+    return factorCount;
 }
 
-
+int form(vector<int> thisDiv){
+    
+}
 
 std::ostream &operator << (std::ostream &output, const Sieve &op){
     output << "Upper Bound is " << op.n << "." << endl;

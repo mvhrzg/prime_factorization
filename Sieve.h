@@ -14,8 +14,8 @@ public:
     Sieve(const Sieve& orig);
     
     std::vector<int> primes();                              //returns all primes in sieve(n)
-    std::vector<int> divisor();                             //returns number of divisors in sieve(n)
-    int multiples(std::vector<bool> &array, int a, int n);
+    std::vector<int>divisor();                             //returns number of divisors in sieve(n)
+//    int multiples(std::vector<bool> &array, int a, int n);
     
     friend std::ostream &operator << (std::ostream &output, const Sieve &op);
     
