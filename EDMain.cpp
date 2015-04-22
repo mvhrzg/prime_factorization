@@ -17,14 +17,20 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Sieve s = Sieve(100);
-    Sieve s2 = Sieve(24);
-    Sieve s3 = Sieve(16);
+//    Sieve s = Sieve(100);
+//    Sieve s2 = Sieve(24);
+//    Sieve s3 = Sieve(16);
+//    Sieve s4 = Sieve(1000);
+//    Sieve s5 = Sieve(10000);
+    Sieve s6 = Sieve(1000000);
     
-    s.divisor();
-    s2.divisor();
-    s3.divisor();
     
+//    s.divisor();
+//    s2.divisor();
+//    s3.divisor();
+//    s4.divisor();
+//    s5.divisor();
+    s6.divisor();
     return 0;
 }
 
