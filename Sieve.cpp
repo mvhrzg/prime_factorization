@@ -89,17 +89,12 @@ vector<int> Sieve::divisor(){
     printf("%d: ", n);
     for (int i = 1; i<factorCount.size(); i++){ //stay away from position 0 in factorCount
         if(factorCount[i] != 0){
-            printf("%d:%d ", i, factorCount[i]);
+            printf("%d^%d ", i, factorCount[i]);
         }
     }
     printf("\n");
     
-    //finding pattern up to n
-    for(int i = 1; i < factorCount.size(); i++){
-        if(factorCount[i] == 3){
-            matches[i] = true;  //mark a^3 as true
-        }
-    }
+    
     
 //    counts number of divisors in n (unrelated to sieve)
 //    for(int i = 1; i <= n; i++){
@@ -115,6 +110,16 @@ int pattern(vector<int> thisDiv){
     int counta;
     int countb;
     int countc;
+    
+    
+    //finding pattern up to n
+//    for(int i = 1; i < factorCount.size(); i++){
+//        if(factorCount[i] == 3){
+//            matches[i] = true;  //mark a^3 as true
+//        }
+//    }
+    
+    
     //for 
             
             

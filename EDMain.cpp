@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 //    Sieve s3 = Sieve(16);
 //    Sieve s4 = Sieve(1000);
 //    Sieve s5 = Sieve(10000);
-    Sieve s6 = Sieve(1000000);
+    Sieve s6 = Sieve(100000);
     
     
 //    s.divisor();
