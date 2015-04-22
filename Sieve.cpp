@@ -17,7 +17,7 @@
 
 using namespace std;
 
-Sieve::Sieve(int n) {
+Sieve::Sieve(long int n) {
     this->n = n;
 }
 
@@ -26,7 +26,7 @@ Sieve::Sieve(const Sieve& orig) {
 }
 
 vector<int> Sieve::primes(){  
-    // Print the number of 2s that divide n
+    // number of 2s that divide n
     vector<int> prime(n);
     int top = 0;
     int thisN = n;
@@ -36,7 +36,7 @@ vector<int> Sieve::primes(){
         thisN = thisN/2;
     }
 
-    // n must be odd at this point.  So we can skip one element (Note i = i +2)
+    // n must be odd at this point. So skip every other element
     for (int i = 3; i <= sqrt(thisN); i = i + 2) {
         // While i divides n, print i and divide n
         while (thisN % i == 0) {
@@ -62,7 +62,7 @@ vector<int> Sieve::primes(){
     return prime;
 }
 
-vector<int> Sieve::divisor(){
+vector<int> Sieve::factor(){
     int count = 0;
     Sieve result(n);
     vector<bool> matches(n, false);
@@ -76,7 +76,6 @@ vector<int> Sieve::divisor(){
     vector<int> isDiv(factor);
     vector<int> factorCount(result.primes().size(), 0);
 
-    
     for(int i = 0; i < isDiv.size(); i++){
         if(result.primes()[i] != 0){
             isDiv[i] = result.primes()[i];
@@ -86,51 +85,63 @@ vector<int> Sieve::divisor(){
     for(int i = 0; i < isDiv.size(); i++){
         factorCount[isDiv[i]]++;       
     }
-    printf("%d: ", n);
-    for (int i = 1; i<factorCount.size(); i++){ //stay away from position 0 in factorCount
-        if(factorCount[i] != 0){
-            printf("%d^%d ", i, factorCount[i]);
+    //printf("%d: ", n);
+
+//    for (int i = 1; i<factorCount.size(); i++){ //stay away from position 0 in factorCount
+//        if(factorCount[i] != 0){
+//            printf("%d^%d ", i, factorCount[i]);
+//        }
+//    }
+//    printf("\n");
+    return factorCount;
+}//factor
+
+int Sieve::pattern(){
+    Sieve result(n);
+    vector<int> factor(result.factor());        //clones result.factor() into factor
+    for(int i = 1; i < factor.size(); i++){
+        printf("(%d) ", factor[i]);
+    }
+//    //for every i < n, get the factors
+//    //if factors match pattern a^7 || a^3b || abc
+//    //i has 8 divisors
+        int counta = 0;
+        int countb = 0;
+        int countc = 0;
+        printf("%d\n", factor.size());
+        for(int i = 1; i < factor.size(); i++){
+            //if(factor[i] != 0){
+                printf("->factor[i] is %d " , factor[i]);
+                for(int j = factor[i]; j < i; j++){
+                    printf("j is %d.\n", j);
+                }
+            //}
+        }
+//
+//    //count a, count b, countc
+//    //if index = 7, counta++
+//    //if other indexes in same array = 0 size-counta number of times, this is a match
+//    //same with others
+//    return count;
+    return 0;
+}//pattern
+
+//may not be needed
+int Sieve::divisor(int m){
+    //Sieve result(list);
+    //vector<int> factor = result.factor();
+    int div = 0;
+    int count = 0;
+    for(int i = 1; i <= m; i++){
+        if(m%i == 0){
+            div++;
         }
     }
-    printf("\n");
-    
-    
-    
-//    counts number of divisors in n (unrelated to sieve)
-//    for(int i = 1; i <= n; i++){
-//        if(n%i==0){
-//            count++;
-//        }
-//    }
-//    printf("\n%d has %d divisors\n", n, count);
-    return factorCount;
-}
-
-int pattern(vector<int> thisDiv){
-    int counta;
-    int countb;
-    int countc;
-    
-    
-    //finding pattern up to n
-//    for(int i = 1; i < factorCount.size(); i++){
-//        if(factorCount[i] == 3){
-//            matches[i] = true;  //mark a^3 as true
-//        }
-//    }
-    
-    
-    //for 
-            
-            
-            //count a, count b, countc
-            //if index = 7, counta++
-            //if other indexes in same array = 0 size-counta number of times, this is a match
-            //same with others
-}
+    return div; //return number of divisors for n
+}//divisor
 
 std::ostream &operator << (std::ostream &output, const Sieve &op){
-    output << "Upper Bound is " << op.n << "." << endl;
+    output << op.n << "." << endl;
     
     return output;
 }//friend
