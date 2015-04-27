@@ -97,26 +97,48 @@ vector<int> Sieve::factor(){
 }//factor
 
 int Sieve::pattern(){
+    bool a = false;
+    bool a3 = false;
+    bool a7 = false;
+    bool b = false;
+    bool c = false;
+    bool rest = false;
     Sieve result(n);
     vector<int> factor(result.factor());        //clones result.factor() into factor
+    
     for(int i = 1; i < factor.size(); i++){
-        printf("(%d) ", factor[i]);
-    }
-//    //for every i < n, get the factors
-//    //if factors match pattern a^7 || a^3b || abc
-//    //i has 8 divisors
-        int counta = 0;
-        int countb = 0;
-        int countc = 0;
-        printf("%d\n", factor.size());
-        for(int i = 1; i < factor.size(); i++){
-            //if(factor[i] != 0){
-                printf("->factor[i] is %d " , factor[i]);
-                for(int j = factor[i]; j < i; j++){
-                    printf("j is %d.\n", j);
-                }
-            //}
+        if(factor[i] != 0){
+            if(factor[i] == 3){
+                a3=true;
+            }
+            if(a3 && factor[i]==1){
+                    b=true;
+//                if(a3 && b && factor[i] == 0){
+                    
+            }
+            if(a3 && b){
+                printf("%d has 8 divisors", factor[i]);
+            }
         }
+//        for(int j = 1; j <= i; j++){
+//            if(factor[j] != 0){
+//                if(factor[j]==3){
+//                    a3 = true;
+//                    if(a3 && factor[j]==1){
+//                        b = true;
+//                    }
+//                }
+//            }
+//        }
+//            printf("%d^%d, ", i, factor[i]);
+//            printf("\n");
+//        if(a3 && b){
+//        printf("%d has 8 divisors\n", n);
+//    }
+    }
+            
+        
+    
 //
 //    //count a, count b, countc
 //    //if index = 7, counta++
