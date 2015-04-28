@@ -146,48 +146,29 @@ bool Sieve::a3b(){
 }
 
 bool Sieve:: abc(){
-    int counta = 0;
-    int countb = 0;
-    int countc = 0;
+    int count = 0;
     Sieve result(n);
     vector<int> factor(result.factor());
-    for(int i = 1; i < n ; i++){
+    bool visited = false;
+    for(int i = 1; i < n; i++){
         if(factor[i] != 0){
-//            if(factor[2]==1){
-//                if(counta==1){
-//                    return false;
-//                }else{
-//                    counta=1;
-//                }
-//            }
-//            if(factor[3]==1){
-//                if(countb==1){
-//                    return false;
-//                }else{
-//                    countb=1;
-//                }
-//            }
-//            if(factor[5]==1){
-//                if(countc==1){
-//                    return false;
-//                }else{
-//                    countc=1;
-//                }
-//            }
-            if(factor[2]==1) counta=1;
-            if(factor[3]==1) countb=1;
-            if(factor[5]==1) countc=1;
-            else{
+            if(factor[i]==1){
+                if(count==3){
+                    return false;
+                }else{
+                    count++;
+                }
+            }else{
                 return false;
             }
         }
     }
-    if(counta==1 && countb==1 && countc==1){
+    if(count==3){
         return true;
     }else{
         return false;
     }
-}
+}//abc()
 
 void Sieve::match(){
     int count = 0;
@@ -198,7 +179,7 @@ void Sieve::match(){
     }
     for(int i = 1; i < v.size(); i++){
         if(v[i].a3b() || v[i].a7() || v[i].abc()){
-            printf("%d ", i);
+            printf("[[%d]] ", i);
             count++;
         }
     }
