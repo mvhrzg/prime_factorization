@@ -149,31 +149,35 @@ bool Sieve:: abc(){
     int counta = 0;
     int countb = 0;
     int countc = 0;
-    bool *visited = (bool *) calloc (n, sizeof(bool));
     Sieve result(n);
     vector<int> factor(result.factor());
-    for(int i = 1; i < n ; i++){//to n
+    for(int i = 1; i < n ; i++){
         if(factor[i] != 0){
-            if(factor[i]==1 && visited[factor[i]]== false){
-                if(counta==1){
-                    return false;
-                }else{
-                    counta=1;
-                }
-            }else if(factor[i]==1 && visited[factor[i]]== false){
-                if(countb==1){
-                    return false;
-                }else{
-                    countb=1;
-                }
-            }else if(factor[i]==1 && visited[factor[i]]== false){
-                if(countc==1){
-                    return false;
-                }else{
-                    countc=1;
-                }
-            visited[factor[i]]=true;
-            }else{
+//            if(factor[2]==1){
+//                if(counta==1){
+//                    return false;
+//                }else{
+//                    counta=1;
+//                }
+//            }
+//            if(factor[3]==1){
+//                if(countb==1){
+//                    return false;
+//                }else{
+//                    countb=1;
+//                }
+//            }
+//            if(factor[5]==1){
+//                if(countc==1){
+//                    return false;
+//                }else{
+//                    countc=1;
+//                }
+//            }
+            if(factor[2]==1) counta=1;
+            if(factor[3]==1) countb=1;
+            if(factor[5]==1) countc=1;
+            else{
                 return false;
             }
         }
@@ -188,21 +192,18 @@ bool Sieve:: abc(){
 void Sieve::match(){
     int count = 0;
     vector<Sieve> v(n, 0);
-    //Sieve *v = (Sieve *) calloc (n, sizeof(Sieve));
     for(int i = 1; i < n; i++){
         Sieve result(i);
         v[i] = result;
-        
     }
     for(int i = 1; i < v.size(); i++){
         if(v[i].a3b() || v[i].a7() || v[i].abc()){
             printf("%d ", i);
             count++;
         }
-        
     }
-    
     printf("%d numbers with exactly 8 divisors\n", count);    
+
 }
 std::ostream &operator << (std::ostream &output, const Sieve &op){
     output << op.n << "." << endl;
