@@ -15,8 +15,10 @@ public:
     
     std::vector<int> primes();                              //returns all primes in sieve(n)
     std::vector<int> factor();                             //returns vector of factors in sieve(n)
-    int divisor(int m);                      //returns number of divisors in n
-    int pattern();                  //scans for 3 know patterns for 8 divisors
+    bool a7();                  //scans for 3 know patterns for 8 divisors
+    bool a3b();
+    bool abc();
+    void match();
     friend std::ostream &operator << (std::ostream &output, const Sieve &op);
     
 private:

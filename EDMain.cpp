@@ -24,9 +24,11 @@ int main(int argc, char** argv) {
 //    Sieve s5 = Sieve(10000);
 //    Sieve s6 = Sieve(100000);
 //    Sieve goal = Sieve(1000000000000);
-    
-    s.pattern();
-    s2.pattern();
+    s.primes();
+    s.match();
+    printf("\n");
+    s2.primes();
+    s2.match();
     return 0;
 }
 
