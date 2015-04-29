@@ -12,15 +12,19 @@ class Sieve {
 public:
     Sieve(long long n);
     Sieve(const Sieve& orig);
-    
-    std::vector<int> primes();                              //returns all primes in sieve(n)
-    std::vector<int> factor();                             //returns vector of factors in sieve(n)
-    bool a7();                  //scans for 3 know patterns for 8 divisors
+    //returns all primes factors in sieve(n)
+    std::vector<int> primes();
+    //returns all factors from prime in the correct index
+    //example, 2^3 = vector[2]=3
+    std::vector<int> factor();
+    //checks for pattern factor^7
+    bool a7();
+    //checks for pattern (factor1^3)*(factor2^1)
     bool a3b();
+    //checks for pattern (factor1^1)*(factor2^1)*(factor3^1)
     bool abc();
+    //checks if any of the above methods are true. if so, increments match count
     void match();
-    friend std::ostream &operator << (std::ostream &output, const Sieve &op);
-    
 private:
     int n;
 

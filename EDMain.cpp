@@ -17,10 +17,9 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Sieve s = Sieve(100);
-//    Sieve s4 = Sieve(1000);
-//    Sieve s5 = Sieve(10000);
-//    Sieve s6 = Sieve(100000);
+//    Sieve s = Sieve(100);
+//    Sieve s = Sieve(1000);
+    Sieve s = Sieve(1000000);
 //    Sieve goal = Sieve(1000000000000);
     s.match();
 //    goal.match();
