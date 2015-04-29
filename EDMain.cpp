@@ -23,6 +23,7 @@ int main(int argc, char** argv) {
 //    Sieve s6 = Sieve(100000);
 //    Sieve goal = Sieve(1000000000000);
     s.match();
+//    goal.match();
     
     return 0;
 }

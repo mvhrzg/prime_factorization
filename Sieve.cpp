@@ -17,7 +17,7 @@
 
 using namespace std;
 
-Sieve::Sieve(long int n) {
+Sieve::Sieve(long long n) {
     this->n = n;
 }
 
@@ -173,17 +173,19 @@ bool Sieve:: abc(){
 void Sieve::match(){
     int count = 0;
     vector<Sieve> v(n, 0);
-    for(int i = 1; i < n; i++){
-        Sieve result(i);
-        v[i] = result;
+//    for(int i = 24; i < n; i++){
+//        v.reserve(v.size() + 1);
+//    }
+    for(int i = 24; i < n; i++){
+        v[i] = Sieve(i);
     }
-    for(int i = 1; i < v.size(); i++){
+    for(int i = 24; i < v.size(); i++){
         if(v[i].a3b() || v[i].a7() || v[i].abc()){
-            printf("[[%d]] ", i);
+            printf("%d ", i);
             count++;
         }
     }
-    printf("%d numbers with exactly 8 divisors\n", count);    
+    printf("\n%d has %d numbers with exactly 8 divisors\n", n, count);
 
 }
 std::ostream &operator << (std::ostream &output, const Sieve &op){

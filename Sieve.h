@@ -10,7 +10,7 @@
 
 class Sieve {
 public:
-    Sieve(long int n);
+    Sieve(long long n);
     Sieve(const Sieve& orig);
     
     std::vector<int> primes();                              //returns all primes in sieve(n)
