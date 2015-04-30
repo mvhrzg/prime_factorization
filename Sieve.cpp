@@ -1,23 +1,23 @@
 /* 
  * File:   Sieve.cpp
- * Author: MHerzog
+ * Author: Mariana Herzog
  * 
  * Created on April 20, 2015, 7:52 PM
  */
 
 #include <vector>
-#include <algorithm>
 #include <ostream>
 #include <fstream>
 #include <iomanip>
 #include <string.h>
 #include <math.h>
 #include <iostream>
+#include <stdint.h>
 #include "Sieve.h"
 
 using namespace std;
 
-Sieve::Sieve(long long n) {
+Sieve::Sieve(uint_fast64_t n) {
     this->n = n;
 }
 
@@ -30,18 +30,20 @@ vector<int> Sieve::primes(){
     vector<int> prime(n);
     int top = 0;
     int thisN = n;
+    int uniqueCount = 0;
     while (thisN % 2 == 0) {
         prime[top] = 2;
         top++;
+        uniqueCount++;
         thisN = thisN/2;
     }
 
     // n must be odd at this point. So skip every other element
-    for (int i = 3; i <= sqrt(thisN); i = i + 2) {
-        // While i divides n, print i and divide n
+    for (int i = 3; i <= sqrt(thisN) && uniqueCount <= 3 && top <= 7; i = i + 2) {
         while (thisN % i == 0) {
             prime[top] = i;
             top++;
+            uniqueCount++;
             thisN = thisN / i;
         }
     }
@@ -52,11 +54,11 @@ vector<int> Sieve::primes(){
         prime[top] = thisN;
         top++;
     }
+
     return prime;
-}
+}//primes
 
 vector<int> Sieve::factor(){
-    int count = 0;
     Sieve result(n);
     int factor = 0;
     int top = 0;
@@ -78,19 +80,13 @@ vector<int> Sieve::factor(){
     for(int i = 0; i < isDiv.size(); i++){
         factorCount[isDiv[i]]++;       
     }
-//    printf("factorCount.size: %d\n", factorCount.size());
-//    for(int i = 1; i < factorCount.size(); i++){
-//        printf("%d:[%d] ",i , factorCount[i]);
-//    }
-//    printf("\n");
     return factorCount;
 }//factor
 
-bool Sieve::a7(){
+bool Sieve::a7(vector<int> factor){
     bool a7 = false;
     int count7 = 0;
-    Sieve result(n);
-    vector<int> factor(result.factor());
+    
     for(int i = 1; i < n; i++){
         if(factor[i] != 0){
             if(factor[i] == 7){
@@ -113,11 +109,10 @@ bool Sieve::a7(){
     }
 }//a7
 
-bool Sieve::a3b(){
+bool Sieve::a3b(vector<int> factor){
     int count1 = 0;
     int count3 = 0;
-    Sieve result(n);
-    vector<int> factor(result.factor());
+    
     for(int i = 1; i < n; i++){//to n
 //        vector<int> factor(this->factor());
         if(factor[i] != 0){
@@ -143,12 +138,11 @@ bool Sieve::a3b(){
     }else{
         return false;
     }
-}
+}//a3b
 
-bool Sieve:: abc(){
+bool Sieve:: abc(vector<int> factor){
     int count = 0;
-    Sieve result(n);
-    vector<int> factor(result.factor());
+    
     bool visited = false;
     for(int i = 1; i < n; i++){
         if(factor[i] != 0){
@@ -172,13 +166,12 @@ bool Sieve:: abc(){
 
 void Sieve::match(){
     int count = 0;
+    
     vector<Sieve> v(n, 0);
     for(int i = 24; i < n; i++){
         v[i] = Sieve(i);
-    }
-    for(int i = 24; i < v.size(); i++){
-        if(v[i].a3b() || v[i].a7() || v[i].abc()){
-            //printf("%d ", i);
+        vector<int> factor(v[i].factor());
+        if(v[i].a3b(factor) || v[i].a7(factor) || v[i].abc(factor)){
             count++;
         }
     }
