@@ -17,12 +17,8 @@
 
 using namespace std;
 
-Sieve::Sieve(uint_fast64_t n) {
+Sieve::Sieve(long n) {
     this->n = n;
-}
-
-Sieve::Sieve(const Sieve& orig) {
-    n = orig.n;
 }
 
 vector<int> Sieve::primes(){  

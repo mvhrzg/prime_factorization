@@ -14,8 +14,7 @@ typedef unsigned long long   uint_fast64_t;
 
 class Sieve {
 public:
-    Sieve(uint_fast64_t n);
-    Sieve(const Sieve& orig);
+    Sieve(long n);
     /**
      * @return Returns all primes factors in sieve(n)
      * Code found here
@@ -50,7 +49,7 @@ public:
      */
     void match();
 private:
-    int n;
+    long n;
 };
 
 #endif	/* SIEVE_H */
