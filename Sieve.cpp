@@ -16,12 +16,24 @@
 #include "Sieve.h"
 
 using namespace std;
-
+/**
+ * Constructor
+ * @param n Goal is 1 billion
+ */
 Sieve::Sieve(long n) {
     this->n = n;
-}
+}//Constructor
 
-vector<int> Sieve::primes(){  
+/**
+ * Retrieves prime factorizarion of n
+ * @return list of prime factors in vector starting from index 0 to number of
+ * factors
+ */
+vector<int> Sieve::primes(){
+    //this code was found at 
+    //http://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
+    //and slightly modified
+    
     // number of 2s that divide n
     vector<int> prime(n);
     int top = 0;
@@ -54,6 +66,10 @@ vector<int> Sieve::primes(){
     return prime;
 }//primes
 
+/**
+ * Puts prime factors in their corresponding indices inside vector of ints
+ * @return Returns the updated vector
+ */
 vector<int> Sieve::factor(){
     Sieve result(n);
     int factor = 0;
@@ -79,6 +95,12 @@ vector<int> Sieve::factor(){
     return factorCount;
 }//factor
 
+/**
+ * 
+ * @param factor Takes factor vector with prime factors in their corresponding indices
+ * and checks for pattern a^7.
+ * @return Returns true if matches pattern, false otherwise
+ */
 bool Sieve::a7(vector<int> factor){
     bool a7 = false;
     int count7 = 0;
@@ -105,12 +127,17 @@ bool Sieve::a7(vector<int> factor){
     }
 }//a7
 
+
+/**
+ * @param factor Takes factor vector with prime factors in their corresponding indices
+ * and checks for pattern a^3b.
+ * @return Returns true if matches pattern, false otherwise
+ */
 bool Sieve::a3b(vector<int> factor){
     int count1 = 0;
     int count3 = 0;
     
     for(int i = 1; i < n; i++){//to n
-//        vector<int> factor(this->factor());
         if(factor[i] != 0){
             if(factor[i] == 3){
                 if(count3==1){
@@ -136,6 +163,12 @@ bool Sieve::a3b(vector<int> factor){
     }
 }//a3b
 
+
+/**
+ * @param factor Takes factor vector with prime factors in their corresponding indices
+ * and checks for pattern abc.
+ * @return Returns true if matches pattern, false otherwise
+ */
 bool Sieve:: abc(vector<int> factor){
     int count = 0;
     
@@ -160,6 +193,11 @@ bool Sieve:: abc(vector<int> factor){
     }
 }//abc()
 
+
+/**
+ * Increments a count for number of numbers with exactly eight divisors whenever
+ * any of the three pattern methods finds a match, for every i up to n-1
+ */
 void Sieve::match(){
     int count = 0;
     
