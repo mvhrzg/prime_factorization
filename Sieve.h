@@ -10,7 +10,6 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <vector>
-typedef unsigned long long   uint_fast64_t;
 
 class Sieve {
 public:
